@@ -1,5 +1,7 @@
 /** processForm: get data from form and make AJAX call to our API. */
-console.log('hello')
+//console.log('hello')
+// http://localhost:5000
+
 async function processForm(evt) {
     evt.preventDefault()
     let name = $("#name").val()
@@ -26,8 +28,8 @@ function handleResponse(resp) {
         }
     }
     else {
-        $("#lucky-results").append(`<p>Your lucky number is ${resp.data.num.num}: ${resp.data.num.fact}</p>`)
-        $("#lucky-results").append(`<p>Your birth year is ${resp.data.year.year}</p>`)
+        $("#lucky-results").append(`<p>Your lucky number is ${resp.data.number.number}: ${resp.data.number.fact}</p>`)
+        $("#lucky-results").append(`<p>Your birth year is ${resp.data.year.year}: ${resp.data.year.fact}</p>`)
     }
 }
 
