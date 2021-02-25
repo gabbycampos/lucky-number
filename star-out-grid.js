@@ -1,21 +1,29 @@
 function starOutGrid(grid) {
-    // * every odd 
-    //const index = grid.indexOf('*');
-    //console.log(index);
-  //   for (let x=0; x< grid.length; x++){
-  //     for (let y=0; y<grid[x].length; y++) {
-  //       console.log(grid[x][y]);
-  //     }
-  //   }
-  // }
-    for (let i=0; i<grid.length; i++) {
-      let first = grid[0];
-      let second = grid[1];
-      let third = grid[2];
-      const firstIndex = first.indexOf('*');
-      const secondIndex = second.indexOf('*');
-      const thirdIndex = third.indexOf('*');
-      //console.log(firstIndex, secondIndex, thirdIndex);
-      
+  const numberOfRows = grid.length;
+  const numberOfColumns = grid[0].length;
+
+  // Make lists to keep track of which rows and columns we should clear
+  const clearRows = Array(numberOfRows).fill(false);
+  const clearColumns = Array(numberOfColumns).fill(false);
+
+  // Pass 1: figure out which cols / rows to clear and set those in our lists
+  for (let i = 0; i < numberOfRows; i++) {
+    for (let j = 0; j < numberOfColumns; j++) {
+      if (grid[i][j] === "*") {
+        clearRows[i] = true;
+        clearColumns[j] = true;
+      }
     }
   }
+
+  // Pass 2: clear rows and columns
+  for (let i = 0; i < numberOfRows; i++) {
+    for (let j = 0; j < numberOfColumns; j++) {
+      if (clearRows[i] || clearColumns[j]) {
+        grid[i][j] = "*";
+      }
+    }
+  }
+
+  return grid;
+}
